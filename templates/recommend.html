@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+
+        *::-webkit-scrollbar{
+            display:none;
+        }
+
+        input {
+            opacity: 0.5; /* Adjust the value between 0 (completely transparent) and 1 (completely opaque) */
+        }
+
+        button{
+            opacity :0.6
+        }
+
+
+        body {
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+
+    background-image: url("{{ url_for('static' ,filename ='img.jpg') }}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+
+        }
+
+        .card-body h2 {
+            color:black;
+
+        }
+
+        .text-white{
+        color:white;
+        width: 40%;
+
+         }
+
+        .card{
+        border : none ! important;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg bg-secondary bg-gradient p-2 text-dark bg-opacity-10" style="  height:85px">
+        <a class="navbar-brand" style = "color : black ; font-size : 30px; font-family : Garamond, serif ">My Book recommender</a>
+
+        <ul class="navbar-nav">
+            <li class = "nav-item mx-4"><a href="/" style = "color:black ;font-family: Georgia, serif">Home</a></li>
+            <li class = "nav-item mx-4"><a href="/recommend" style = "color:black ;font-family: Georgia, serif">Recommend</a></li>
+            <li class = "nav-item mx-4"><a style = "color:black ;font-family: Georgia, serif">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <div class = "container-fluid" style = "margin-top : 40px ; margin-left : 50px; padding :0">
+        <div class = "row">
+            <div class ="col-12" style = "margin-left : 10px" >
+                <h1 style = " color : black;font-size : 50px ; font-family : Papyrus, fantasy">Recommendation</h1>
+                <form>
+                    <input type="text"  class="form-control" style = "background-color:#DCDCDC ; width:700px">
+                    <button type="submit" class="btn btn-outline-dark" style = "margin-left:600px ; margin-top:20px; width:100px">Submit</button>
+                </form>
+            </div>
+
+                <div class="col-4" style=" margin-bottom:0px" >
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body bg-transparent" style="font-family: Times New Roman, Times, serif ">
+                            <img class="card-img mb-3 rounded" style = "width: auto ; height : 250px" src="http://images.amazon.com/images/P/0439136350.01.MZZZZZZZ.jpg">
+                            <h2 class="text-white" style = "font-size : 20px ; width :150px">df</h2>
+                            <h6 class="text-white">sd</h6>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>>
+
+</body>
+</html>

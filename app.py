@@ -15,7 +15,10 @@ def index():
                            votes = list(popular_df['Total_Votes'].values),
                            ratings=list(popular_df['Average_Rating'].values))
 
+@app.route('/recommend')
 
+def rec():
+    return render_template("recommend.html")
 
 
 
