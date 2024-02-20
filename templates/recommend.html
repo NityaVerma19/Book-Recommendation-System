@@ -69,11 +69,13 @@
         <div class = "row">
             <div class ="col-12" style = "margin-left : 10px" >
                 <h1 style = " color : black;font-size : 50px ; font-family : Papyrus, fantasy">Recommendation</h1>
-                <form>
-                    <input type="text"  class="form-control" style = "background-color:#DCDCDC ; width:700px">
+                <form action = "/recommend_books" method="post">
+                    <input name = "user_input" type="text"  class="form-control" style = "background-color:#DCDCDC ; width:700px">
                     <button type="submit" class="btn btn-outline-dark" style = "margin-left:600px ; margin-top:20px; width:100px">Submit</button>
                 </form>
             </div>
+
+
 
                 <div class="col-4" style=" margin-bottom:0px" >
                     <div class="card border-0 bg-transparent">

@@ -1,7 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import pandas as pd
+import numpy as np
 
 popular_df = pd.read_csv("pop.csv")
+similarity_score = pd.read_csv("similarity_score.csv")
+pt = np.loadtxt("pt.csv")
+books = pd.read_csv("books1.csv")
+
+
 
 app = Flask(__name__)
 
@@ -14,6 +20,14 @@ def index():
                            image = list(popular_df['Image-URL-M'].values),
                            votes = list(popular_df['Total_Votes'].values),
                            ratings=list(popular_df['Average_Rating'].values))
+
+
+@app.route('/recommend_books',methods = ['POST'])
+
+def recommend():
+    user_input = request.form.get(user_input)
+    return user_input
+
 
 @app.route('/recommend')
 
