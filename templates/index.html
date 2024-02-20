@@ -35,20 +35,19 @@
                 <h1 class = "text-white" style = "font-size : 50px">Top 50 Books</h1>
             </div>
 
-            { % for i in range(book_name|length) %}
-            <div class="col-md-3" style = "margin-top:40px">
-                    <div class="card" style = "background-color:#212529">
-                        <div class = "card-body" style = "background-color:#212529">
-                            <img class ="card-img-top" src ="{{image[i]}}">
-                            <p class = "text-white">{{book_name[i]}}</p>
-                            <h4 class = "text-white">{{author[i]}}</h4>
-                            <h4 class = "text-white">Votes - {{votes[i]}}</h4>
-                            <h4 class = "text-white">Ratings - {{ratings[i]}}</h4>
+            {% for i in range(book_name|length) %}
+                <div class="col-md-3" style="margin-top:50px">
+                    <div class="card" >
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{ image[i] }}">
+                            <p class="text-white">{{ book_name[i] }}</p>
+                            <h4 class="text-white">{{ author[i] }}</h4>
+                            <h4 class="text-white">Votes - {{ votes[i] }}</h4>
+                            <h4 class="text-white">Rating - {{ ratings[i] }}</h4>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-
         </div>
 
     </div>>
