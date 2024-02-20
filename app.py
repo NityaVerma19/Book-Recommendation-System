@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import pandas as pd
 
-popular_df = pd.read_csv("popularity.csv")
+popular_df = pd.read_csv("pop.csv")
 
 app = Flask(__name__)
 
@@ -13,7 +13,10 @@ def index():
                            author = list(popular_df['Book-Author'].values),
                            image = list(popular_df['Image-URL-M'].values),
                            votes = list(popular_df['Total_Votes'].values),
-                           ratings = list(popular_df['Average_Rating'].values))
+                           ratings=list(popular_df['Average_Rating'].values))
+
+
+
 
 
 
