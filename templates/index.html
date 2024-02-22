@@ -24,7 +24,6 @@
 
         .card-body h2 {
             color:black;
-
         }
 
         .text-white{
@@ -35,6 +34,8 @@
 
         .card{
         border : none ! important;
+        opacity : 75;
+
         }
 
 
@@ -56,16 +57,16 @@
     </nav>
 
 
-    <div class = "container-fluid" style = "margin-top : 40px ; margin-left : 50px; padding :0">
-        <div class = "row">
-            <div class ="col-12" style = "margin-left : 10px" >
+    <div class = "container-fluid" style = "margin-top : 40px ; margin-left : 50px; padding :0;">
+        <div class = "row justify-content-center">
+            <div class ="col-12" style = "margin-left : 10px"  >
                 <h1 style = " color : black;font-size : 50px ; font-family : Papyrus, fantasy">Top 50 Books</h1>
             </div>
 
             {% for i in range(book_name|length) %}
                 <div class="col-4" style=" margin-bottom:0px" >
-                    <div class="card border-0 bg-transparent">
-                        <div class="card-body bg-transparent" style="font-family: Times New Roman, Times, serif ">
+                    <div class="card border-0 bg-transparent" style=" background-color:rgba(192,192,192,0.3)">
+                        <div class="card-body opacity-75" style="font-family: Times New Roman, Times, serif ">
                             <img class="card-img mb-3 rounded" style = "width: auto ; height : 250px" src="{{ image[i] }}">
                             <h2 class="text-white" style = "font-size : 20px ; width :150px">{{ book_name[i] }}</h2>
                             <h6 class="text-white">{{ author[i] }}</h6>

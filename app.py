@@ -2,11 +2,13 @@ from flask import Flask, render_template, request
 import pandas as pd
 import numpy as np
 
+
 popular_df = pd.read_csv("pop.csv")
 similarity_score = pd.read_csv("final_ss.csv")
 pt = pd.read_csv("pt.csv")
 books = pd.read_csv("books1.csv")
-#index = np.where(pt.index == "Animal Farm")[0]  # fethcing the index
+suggestions = pd.read_csv("suggestions.csv")
+#index = np.where(pt.index == "Animal Farm")[0]  # fetching the index
 app = Flask(__name__)
 
 @app.route('/')
@@ -20,8 +22,11 @@ def index():
                            ratings=list(popular_df['Average_Rating'].values))
 
 
-@app.route('/recommend_books',methods = ['POST'])
+@app.route('/recommend')
+def recommend_ui():
+    return render_template('recommend.html')
 
+@app.route('/recommend_books',methods=['post'])
 def recommend():
     user_input = request.form.get('user_input')
     index = np.where(pt.index == user_input)[0][0]
@@ -41,15 +46,5 @@ def recommend():
 
     return render_template('recommend.html',data=data)
 
-@app.route('/recommend')
-
-def rec():
-    return render_template("recommend.html")
-
-
-
-
 if __name__ == '__main__':
-    app.run(debug= True)
-
-
+    app.run(debug=True)
