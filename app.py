@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 
-def index():
+def home():
     return render_template("index.html",
                            book_name = list(popular_df['Book-Title'].values),
                            author = list(popular_df['Book-Author'].values),
@@ -24,27 +24,41 @@ def index():
 
 @app.route('/recommend')
 def recommend_ui():
-    return render_template('recommend.html')
+    return render_template('recommendations.html')
 
-@app.route('/recommend_books',methods=['post'])
-def recommend():
-    user_input = request.form.get('user_input')
-    index = np.where(pt.index == user_input)[0][0]
-    similar_items = sorted(list(enumerate(similarity_score[index])), key=lambda x: x[1], reverse=True)[1:5]
+def recommend(book_name):
+    try:
+        # fetch index
+        index = np.where(pt.index == book_name)[0][0]
+        similar_items = sorted(list(enumerate(similarity_score[0])), key=lambda x: x[1], reverse=True)[
+                        1:5]  # sorting based on the similarity score
+        print(similar_items)
 
-    data = []
-    for i in similar_items:
-        item = []
-        temp_df = books[books['Book-Title'] == pt.index[i[0]]]
-        item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Title'].values))
-        item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Author'].values))
-        item.extend(list(temp_df.drop_duplicates('Book-Title')['Image-URL-M'].values))
+        data = []
+        for i in similar_items:
+            items = []
+            temp_df = books[books['Book-Title'] == pt.index[i[0]]]
+            items.extend(temp_df.drop_duplicates('Book-Title')['Book-Title'].values)
+            items.extend(temp_df.drop_duplicates('Book-Title')['Book-Author'].values)
+            items.extend(temp_df.drop_duplicates('Book-Title')['Book-Title'].values)
 
-        data.append(item)
+            data.append(items)
+        return data
 
-    print(data)
+    except IndexError:
+        # Handle the case where the book name is not found in the index
+        return ["Book not found in the dataset"]
 
-    return render_template('recommend.html',data=data)
+book_recommendations = recommend("The Notebook")
+print("Recommendations:", book_recommendations)
+
+@app.route('/recommendations', methods=['POST'])
+def get_recommendations():
+    if request.method == 'POST':
+        book_name = request.form['book_name']
+        recommendations = recommend(book_name)
+        return render_template('recommendations.html', recommendations=recommendations)
 
 if __name__ == '__main__':
     app.run(debug=True)
+

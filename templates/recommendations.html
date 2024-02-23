@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content = "width=device-width, initial-scale=1.0"
     <title>Book Recommender System</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
@@ -69,24 +70,26 @@
         <div class = "row">
             <div class ="col-12" style = "margin-left : 10px" >
                 <h1 style = " color : black;font-size : 50px ; font-family : Papyrus, fantasy">Recommendation</h1>
-                <form action = "/recommend_books" method="post">
-                    <input name = "user_input" type="text"  class="form-control" style = "background-color:#DCDCDC ; width:700px">
+                <form action = "/recommendations" method="post">
+                    <input name = "book_name" type="text"  class="form-control" style = "background-color:#DCDCDC ; width:700px">
                     <button type="submit" class="btn btn-outline-dark" style = "margin-left:600px ; margin-top:20px; width:100px">Submit</button>
                 </form>
             </div>
 
-
+                {%for recommendation in recommendations%}
                 <div class="col-4" style=" margin-bottom:0px" >
                     <div class="card border-0 bg-transparent">
                         <div class="card-body bg-transparent" style="font-family: Times New Roman, Times, serif ">
-                            <img class="card-img mb-3 rounded" style = "width: auto ; height : 250px" src="http://images.amazon.com/images/P/0439136350.01.MZZZZZZZ.jpg">
-                            <h2 class="text-white" style = "font-size : 20px ; width :150px">df</h2>
-                            <h6 class="text-white">sd</h6>
+                            <img class="card-img mb-3 rounded" style = "width: auto ; height : 250px" src="{{recommendation[2]}}">
+                            <h2 class="text-white" style = "font-size : 20px ; width :150px">{{recommendation[0]}}</h2>
+                            <h6 class="text-white">{{recommendation[1]}}</h6>
 
                         </div>
                     </div>
                 </div>
+                {% endfor %}
         </div>
+
 
     </div>>
 
